@@ -15,7 +15,6 @@ import java.util.List;
 @Service
 @Slf4j
 public class LibraryService implements ILibraryService {
-
     private IBookRepository bookRepository;
     private IBookMapper bookMapper;
 
@@ -82,4 +81,5 @@ public class LibraryService implements ILibraryService {
         }
         bookRepository.deleteById(id);
     }
+
 }
