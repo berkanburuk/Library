@@ -1,5 +1,6 @@
-package com.library.dto;
+package mapper;
 
+import com.library.dto.BookDTO;
 import com.library.model.Book;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -19,10 +20,10 @@ public interface IBookMapper {
     BookDTO toBookDTO(Book book);
 
     @Mappings({
-            @Mapping(target = "fullName", source = "book.name"),
-            @Mapping(target = "publishYear", source = "book.publishDate")
+            @Mapping(target = "fullName", source = "bookList.name"),
+            @Mapping(target = "publishYear", source = "bookList.publishDate" /*,  dateFormat = "dd-MM-yyyy HH:mm:ss"*/)
     })
-    List<BookDTO> toBookDTOs(List<Book> bookList);
+    List<BookDTO> toBookDTOList(List<Book> bookList);
 
     @Mappings({
             @Mapping(target = "name", source = "bookDTO.fullName"),
