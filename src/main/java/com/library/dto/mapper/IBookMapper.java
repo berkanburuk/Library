@@ -1,4 +1,4 @@
-package mapper;
+package com.library.dto.mapper;
 
 import com.library.dto.BookDTO;
 import com.library.model.Book;
