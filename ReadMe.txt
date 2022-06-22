@@ -11,4 +11,5 @@ Spring Log
 
 How to Implement
 Download the code & import.
-Create a docker container by using Postgres image. (username=postgres, password=1234)
+docker-compose up
+start the project

@@ -1982,3 +1982,44 @@ Action:
 
 Consider defining a bean of type 'mapper.IBookMapper' in your configuration.
 
+2022-06-23 00:55:32,801 INFO org.springframework.boot.StartupInfoLogger [main] Starting LibraryApplication using Java 17.0.3.1 on DESKTOP-PNPFDMC with PID 6652 (C:\Users\BerkanBBB\Desktop\Library\target\classes started by BerkanBBB in C:\Users\BerkanBBB\Desktop\Library)
+2022-06-23 00:55:32,801 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-06-23 00:55:33,303 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-23 00:55:33,350 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 1 JPA repository interfaces.
+2022-06-23 00:55:33,647 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-06-23 00:55:33,647 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+2022-06-23 00:55:33,647 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-23 00:55:33,647 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.63]
+2022-06-23 00:55:33,725 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-23 00:55:33,725 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 883 ms
+2022-06-23 00:55:33,816 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-23 00:55:33,847 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.9.Final
+2022-06-23 00:55:33,925 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-23 00:55:33,972 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-06-23 00:55:34,034 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-06-23 00:55:34,034 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL92Dialect
+2022-06-23 00:55:34,347 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-23 00:55:34,347 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-23 00:55:34,487 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'libraryController' defined in file [C:\Users\BerkanBBB\Desktop\Library\target\classes\com\library\controller\LibraryController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'libraryService' defined in file [C:\Users\BerkanBBB\Desktop\Library\target\classes\com\library\service\Impl\LibraryService.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'mapper.IBookMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-06-23 00:55:34,487 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-23 00:55:34,487 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
+2022-06-23 00:55:34,487 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown completed.
+2022-06-23 00:55:34,487 INFO org.apache.juli.logging.DirectJDKLog [main] Stopping service [Tomcat]
+2022-06-23 00:55:34,503 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-06-23 00:55:34,519 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [main] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in com.library.service.Impl.LibraryService required a bean of type 'mapper.IBookMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'mapper.IBookMapper' in your configuration.
+
