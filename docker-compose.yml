@@ -1,20 +1,68 @@
-version: '3'
+version: '3.4'
 services:
   db:
     image: postgres:latest
     container_name: library_con
-#    hostname: myhostname
-#    restart: always
+    #    hostname: myhostname
+    #    restart: always
     networks:
       - postgres
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=1234
-      - POSTGRES_DB=library_system
     ports:
       - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=library_system
+
+  rabbit1:
+#   image: rabbitmq:latest
+    image: "rabbitmq:3.6-management"
+    container_name: rabbit
+    hostname: rabbit1
+    expose:
+      - '5672'
+      - '15672'
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - /etc/so/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+      - /etc/so/definitions.json:/etc/rabbitmq/definitions.json:ro
+    environment:
+      #      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:-admin}
+      #      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS:-admin}
+      - RABBITMQ_DEFAULT_USER=adminuser
+      - RABBITMQ_DEFAULT_PASS=adminuser
+      - RABBITMQ_PID_FILE /var/lib/rabbitmq/mnesia/rabbitmq
+
+  rabbit2:
+    image: rabbitmq:latest
+    hostname: rabbit2
+    links:
+      - rabbit1
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    environment:
+      - CLUSTERED=true
+      - CLUSTER_WITH=rabbit1
+      - RAM_NODE=true
+
+  rabbit3:
+    image: rabbitmq:latest
+    hostname: rabbit3
+    links:
+      - rabbit1
+      - rabbit2
+
+    ports:
+      - "5674:5672"
+    environment:
+      - CLUSTERED=true
+      - CLUSTER_WITH=rabbit1
+
 volumes:
   db:
     driver: local
