@@ -2,8 +2,7 @@ version: '3.4'
 services:
   db:
     image: postgres:latest
-    container_name: library_con
-    #    hostname: myhostname
+    container_name: db_container
     #    restart: always
     networks:
       - postgres
@@ -17,34 +16,39 @@ services:
       - POSTGRES_DB=library_system
 
   rabbit1:
-#   image: rabbitmq:latest
-    image: "rabbitmq:3.6-management"
-    container_name: rabbit
+    image: "rabbitmq:3.10.5-management"
+    container_name: rabbit1_container
     hostname: rabbit1
-    expose:
-      - '5672'
-      - '15672'
     ports:
       - '5672:5672'
       - '15672:15672'
+    expose:
+      - '5672'
+      - '15672'
     volumes:
-      - /etc/so/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
-      - /etc/so/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - x/:/var/lib/rabbitmq/mnesia
+      - y:/var/log/rabbitmq
+#      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia/
+#      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+#     - /etc/so/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+#     - /etc/so/definitions.json:/etc/rabbitmq/definitions.json:ro
     environment:
-      #      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:-admin}
-      #      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS:-admin}
-      - RABBITMQ_DEFAULT_USER=adminuser
-      - RABBITMQ_DEFAULT_PASS=adminuser
-      - RABBITMQ_PID_FILE /var/lib/rabbitmq/mnesia/rabbitmq
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+#      - RABBITMQ_PID_FILE /var/lib/rabbitmq/data
 
   rabbit2:
     image: rabbitmq:latest
+    container_name: rabbit2_container
     hostname: rabbit2
     links:
       - rabbit1
     ports:
       - "5673:5672"
       - "15673:15672"
+    expose:
+      - '5672'
+      - '15672'
     environment:
       - CLUSTERED=true
       - CLUSTER_WITH=rabbit1
@@ -52,13 +56,17 @@ services:
 
   rabbit3:
     image: rabbitmq:latest
+    container_name: rabbit3_container
     hostname: rabbit3
     links:
       - rabbit1
       - rabbit2
-
     ports:
       - "5674:5672"
+      - "15674:15672"
+    expose:
+      - '5672'
+      - '15672'
     environment:
       - CLUSTERED=true
       - CLUSTER_WITH=rabbit1

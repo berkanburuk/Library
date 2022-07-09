@@ -12,9 +12,10 @@ public class RabbitMQQueueConfig {
 
     @Bean
     public Queue queueDeadlineExceeded() {
-        return QueueBuilder.durable(RabbitMQEnum.QUEUE_DEADLINE_EXCEEDED.getValue())
-                .autoDelete()
-                .exclusive()
+        return QueueBuilder
+                .durable(RabbitMQEnum.QUEUE_DEADLINE_EXCEEDED.getValue())
+//                .autoDelete()
+//                .exclusive()
                 .build();
     }
 
