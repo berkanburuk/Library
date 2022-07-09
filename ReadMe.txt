@@ -3,6 +3,7 @@ This project’s aim is to demonstrate the usage of Spring Boot, proper project 
 Technologies
 Java 17
 Docker (Postgres Image)
+RabbitMQ
 Spring Boot
 Swagger
 REST APIs

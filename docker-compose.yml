@@ -26,10 +26,8 @@ services:
       - '5672'
       - '15672'
     volumes:
-      - x/:/var/lib/rabbitmq/mnesia
-      - y:/var/log/rabbitmq
-#      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia/
-#      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
 #     - /etc/so/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
 #     - /etc/so/definitions.json:/etc/rabbitmq/definitions.json:ro
     environment:
